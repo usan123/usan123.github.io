@@ -1,0 +1,32 @@
+img {
+    width: 100%;
+}
+.my-bg-2{
+background-color: rgb(222, 215, 234);
+padding: 20px 0;
+}
+.title{
+background-color: rgb(222, 215, 234);
+padding: 20px 0;
+font-family: 'Bruno Ace SC', cursive ;
+}
+.title h2{
+    font-variant: small-caps;
+}
+p,h6,h5,h4,h3{color: rgb(0, 0, 0);
+ font-family: 'Caveat', cursive ;}
+.my-shadow{
+box-shadow: 0px 0px 15px rgb(238, 137, 42);
+}
+body{background-image: url(poisin.jpg);}
+
+.fon-gray{
+    background-color: rgba(88, 88, 88, 0.705);
+    padding: 20px;
+    color: antiquewhite;
+}
+
+.footer{background-color: darkgray;}
+/* 
+font-family: 'Jua', sans-serif
+*/
