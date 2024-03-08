@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ua">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Блокнот</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Honk&family=Press+Start+2P&family=Rubik+Glitch+Pop&family=Shadows+Into+Light&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            background: url(backround.jpg);
+            font-family: "Press Start 2P", system-ui;
+            color: wheat;
+        }
+
+        .container {
+            background-color: #fff;
+            color: rgb(232, 120, 40);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        input {
+            width: 90%;
+            padding: 7px;
+            border: 0;
+            border-radius: 5px;
+            color: chocolate;
+        }
+
+        input:focus {
+            outline: 0;
+            box-shadow: 0px 5px 10px rgba(210, 105, 30, 0.45);
+            color: chocolate;
+        }
+
+        input:focus::placeholder {
+            font-weight: 900;
+            color: chocolate;
+        }
+
+        .add-btn {
+            background-color: rgb(232, 120, 40);
+            border: 0;
+            padding: 5px 30px;
+            color: aliceblue;
+            font-weight: 900;
+            border-radius: 5px;
+        }
+
+        .add-btn:hover {
+            box-shadow: 0px 5px 10px rgba(210, 105, 30, 0.45);
+
+        }
+
+        .add-btn:active {
+            box-shadow: 0px 10px 15px rgba(210, 105, 30, 0.45);
+        }
+
+        .p-note {
+            height: 50px;
+            border-bottom: 5px solid rgba(210, 105, 30, 0.45);
+        }
+
+        .lol {
+            width: 100px;
+            height: 60px;
+        }
+
+        .aaa {
+            display: none;
+            text-decoration: none;
+            color: rgb(232, 120, 40);
+        }
+
+        .sss {
+            display: none;
+            text-decoration: none;
+            color: rgb(232, 120, 40);
+        }
+
+        .lole {
+            background-color: #fff;
+            color: rgb(232, 120, 40);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        .btn-delete {
+            background: rgb(232, 120, 40);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 30px;
+            font-weight: 900;
+        }
+
+        .note-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0px;
+            border-bottom: 1px solid green;
+            padding-bottom: 5px;
+        }
+
+        h1 {
+           text-align: center;
+            text-shadow: 5px 5px 5px black;
+        }
+        .osnova{
+            background: white;
+            border-radius: 5px;
+            margin: 5px;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container lole">
+        <h1>{{title}}</h1>
+        <input type="text" v-bind:placeholder="hint" v-model="note" v-on:keypress.enter="addFunction()">
+        <p class="p-note">{{note}}</p>
+        <button class="add-btn" v-on:click="addFunction()"><img class="lol" src="букві.png" alt=""></button>
+        <div class="note-wrap">
+            <div class="note-item" v-for="(item,i) in notesArr" v-if="notesArr.length !=0">
+                <div class="div-notes"> {{i+1}} {{item}}</div> <button class="btn-delete"
+                    v-on:click="DelFunction(i)">видяляти</button>
+            </div>
+            <div class="" v-else>
+                <p>ти тут щось бачиш?і я ні...</p>
+            </div>
+        </div>
+
+    </div>
+    <div class="osnova"><a href="imdex.html" class="sss">change langue</a>
+    <a href="" class="aaa">інший сайт</a></div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        let aaa = document.querySelector('.aaa')
+        let sss = document.querySelector('.sss')
+        let bandera = {
+            data() {
+                return {
+                    title: 'Нотатки',
+                    hint: 'запишіть свою важливу справу якщо ви не пацан або поц з одеської',
+                    note: 'стирай це все лох ти не зможеш а якщо ти зітреш одну букву то ти поц і пацан з одеської,ХАХхахАХхахХХАхххаххаХахХахАхахахХААХАХахахХаххааххах',
+                    notesArr: []
+                }
+            },
+            methods: {
+                addFunction() {
+                    if (this.note == 'change langue') {
+                        sss.style.display = 'block'
+                    }
+                    if (this.note == 'index1.html') {
+                        aaa.style.display = 'block'
+                    }
+                    if (this.note != '') {
+                        this.notesArr.push(this.note)
+                        localStorage.setItem('notes', JSON.stringify(this.notesArr))
+                    } this.note = '';
+                },
+                DelFunction(i) {
+                    this.notesArr.splice(i, 1)
+                    localStorage.setItem('notes', JSON.stringify(this.notesArr))
+                }
+            },
+            mounted() {
+                if (localStorage.getItem("notes") != null) {
+                    this.notesArr = JSON.parse(localStorage.getItem("notes"))
+                }
+            }
+        }
+        Vue.createApp(bandera).mount('.container')
+
+    </script>
+</body>
+
+</html>
